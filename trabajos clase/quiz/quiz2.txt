@@ -1,0 +1,26 @@
+1) Encapsulamiento. ¿Qué es? ¿Cómo lo logra java' ¿Por qué es improtante?
+	a)es el proceso el cual alamecenamos los elementos de una abstracciòn en un misma parte 
+	b)en cerrando los metodos y atibutos en una sola clase 
+	c)Por mantenibilidad, estabilidad y seguridad principalmente
+
+Por mantenibilidad, estabilidad y seguridad principalmente
+2) static. Atributo+Método. ¿Qué implica? 1 Ejemplo
+ 	Una clase, método o campo declarado como estático puede ser accedido o invocado sin la necesidad de tener que instanciar un objeto de la clase
+	public class SingletonTest {
+ 
+    		private static SingletonTest instance = null;
+ 
+    		protected SingletonTest() {
+    		}
+ 
+    		public static SingletonTest getInstance() {
+        	if (instance == null) {
+            		instance = new SingletonTest();
+        	}
+ 
+        	return instance;
+    		}
+	}
+3) Libre
+	polimorfismo 
+		polimorfismo es la capacidad que tienen los objetos de una clase en ofrecer respuesta distinta e independiente en función de los parámetros (diferentes implementaciones) utilizados durante su invocación

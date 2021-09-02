@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Nation
+comment1.params=
+comment1.target=Nation()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Nation\r\n
+comment2.params=color
+comment2.target=void\ changeColor(java.lang.String)
+comment3.params=x\ y
+comment3.target=void\ changePosition(int,\ int)
+comment4.params=armies
+comment4.target=void\ armie(int)
+comment5.params=
+comment5.target=void\ makeVisible()
+comment6.params=
+comment6.target=void\ makeInvisible()
+numComments=7

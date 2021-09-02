@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Digit
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Digit\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=digit
+comment1.target=Digit(byte)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Digit\r\n
+comment2.params=
+comment2.target=void\ get()
+comment3.params=
+comment3.target=void\ next()
+comment4.params=digit
+comment4.target=void\ change(byte)
+comment5.params=
+comment5.target=void\ change()
+comment6.params=xPosition\ yPosition
+comment6.target=void\ moveTo(int,\ int)
+comment7.params=newColor
+comment7.target=void\ changeColor(java.lang.String)
+comment8.params=
+comment8.target=void\ makeVisible()
+numComments=9
