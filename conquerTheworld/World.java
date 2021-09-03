@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class world here.
  * 
@@ -11,6 +11,7 @@ public class World
     private int length;
     private int width;
     private Rectangle fondo;
+    private ArrayList<Nation> Nations;
 
     /**
      * Constructor for objects of class world
@@ -24,22 +25,51 @@ public class World
         fondo.changeSize(length,width);
         fondo.changeColor("black");
         fondo.makeVisible();
+        Nations = new  ArrayList<Nation>();
     }
 
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
     public void addNation(String color,int x ,int y , int armies ){
         Nation nation = new Nation();
         nation.changeColor(color);
         nation.changePosition(x,y);
+        Nations.add(nation);
+        nation.setNombre(String.valueOf(Nations.size()));
+        System.out.println(Nations.size());
         nation.makeVisible();
     }
-    public void addRoute(){
-        
+    
+    public void putArmy(String location ){
+        for(Nation n : Nations){
+            if(n.getName().equals(location)){
+                Army amr = new Army();
+                n.addArmy(amr);
+            }
+        }
+    }
+    
+    public void addRoute(String locationA , String locationB){
+        boolean found = foundNations(locationA ,locationB);
+        if(found){
+            
+        }
+    }
+    
+    
+    private boolean foundNations(String locationA , String locationB){
+        boolean found = false,foundT = false;
+        for(Nation n : Nations){
+            if(!found){
+                if(n.getName().equals(locationA)){
+                    found = true;
+                    System.out.println(locationA+" "+locationB);
+                }
+            }else{
+                if(n.getName().equals(locationB)){
+                    foundT = true;
+                    System.out.println(locationA+" "+locationB);
+                }
+            }
+        }
+        return foundT;
     }
 }

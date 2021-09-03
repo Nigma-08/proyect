@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class Ejercito here.
@@ -9,6 +10,7 @@ public class Army
 {
     // instance variables - replace the example below with your own
     private int x;
+    private Triangle T;
 
 
     /**
@@ -17,9 +19,14 @@ public class Army
     public Army()
     {
         // initialise instance variables
-        x = 0;
+        T = new Triangle();
+        
     }
-
+    /**
+     * Constructor for objects of class Ejercito
+     */
+        
+    
     /**
      * An example of a method - replace this comment with your own
      * 
