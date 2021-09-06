@@ -26,7 +26,7 @@ public class Canvas{
      */
     public static Canvas getCanvas(){
         if(canvasSingleton == null) {
-            canvasSingleton = new Canvas("BlueJ Shapes Demo", 550, 550, 
+            canvasSingleton = new Canvas("BlueJ Shapes Demo", 400, 400, 
                                          Color.white);
         }
         canvasSingleton.setVisible(true);
@@ -128,6 +128,8 @@ public class Canvas{
             graphic.setColor(Color.magenta);
         else if(colorString.equals("white"))
             graphic.setColor(Color.white);
+        else if(colorString.equals("gray"))
+            graphic.setColor(Color.gray);
         else
             graphic.setColor(Color.black);
     }
@@ -144,10 +146,6 @@ public class Canvas{
         } catch (Exception e){
             // ignoring exception at the moment
         }
-    }
-    public void drawline(int x1,int y1,int x2,int y2){
-        drawline(x1,y1,x2,y2);
-        
     }
 
     /**
@@ -204,6 +202,5 @@ public class Canvas{
             graphic.fill(shape);
         }
     }
-    
 
 }

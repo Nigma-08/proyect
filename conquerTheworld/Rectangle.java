@@ -63,7 +63,6 @@ public class Rectangle{
         moveHorizontal(-20);
     }
 
-
     /**
      * Move the rectangle a few pixels up.
      */
@@ -97,7 +96,6 @@ public class Rectangle{
         yPosition += distance;
         draw();
     }
-    
 
     /**
      * Slowly move the rectangle horizontally.

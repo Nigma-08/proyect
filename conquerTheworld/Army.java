@@ -1,41 +1,40 @@
-import java.util.ArrayList;
-
 /**
- * Write a description of class Ejercito here.
+ * La clase army son las tropas que tienen las naciones 
+ * Se representa por medio de triangulos.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Torres Julian-Romero Nicolas) 
+ * @version (2021-2)
  */
 public class Army
 {
     // instance variables - replace the example below with your own
-    private int x;
-    private Triangle T;
-
+    private int xPosition;
+    private int yPosition;
+    private Triangle army;
 
     /**
      * Constructor for objects of class Ejercito
      */
-    public Army()
+    public Army(int xPosition, int yPosition)
     {
-        // initialise instance variables
-        T = new Triangle();
-        
+        army = new Triangle(xPosition, yPosition);
     }
-    /**
-     * Constructor for objects of class Ejercito
-     */
-        
-    
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
+
+    public void makeVisible()
     {
-        // put your code here
-        return x + y;
+        army.makeVisible();
+    }
+    
+    public int getX(){
+        return xPosition;
+    }
+    
+    public int getY(){
+        return yPosition;
+    }
+    
+    public void makeInvisible()
+    {
+        army.makeInvisible();
     }
 }

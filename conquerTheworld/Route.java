@@ -1,45 +1,71 @@
-import java.util.ArrayList;
+import java.awt.*;
 
 /**
- * Write a description of class Ruta here.
+ * Route es una clase que manipula las rutas entre naciones
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Torres Julian-Romero Nicolas) 
+ * @version (2021-02)
  */
-public class Route
-{
-    // instance variables - replace the example below with your own
-    private Rectangle route;
-    private ArrayList <String> locationsA;
-    private ArrayList <String> locationsB;
-    private int cost;
-
-
-    public Route()
-    {
-        // initialise instance 
-        route = new Rectangle();
-        locationsA = new ArrayList<String>();
-        locationsB = new ArrayList<String>();
-        cost = 0;
+public class Route{
+    
+    private String color;
+    private boolean isVisible;
+    private int[] xpoints ;
+    private int[] ypoints;
+    
+    /**
+     * Creador del camino.
+     * @param xpoints puntos en x para las coordenadas.
+     * @param ypoints puntos en y para las coordenadas,
+     */
+    public Route(int [] xpoints,int [] ypoints){
+        color = "gray";
+        isVisible = false;
+        this.xpoints = new int[4];
+        this.ypoints = new int[4];
+        this.xpoints = xpoints;
+        this.ypoints = ypoints;
+        makeVisible();
     }
     
-    public String getLocationA(String locationA){
-        String location = "none";
-        for (int i=0;i<locationsA.size();i++){
-            if (locationA.equals(locationsA.get(i))){
-                location=locationA;
-            }
-        }
-        return location;
+    
+    /**
+     * Hace visible el camino 
+     */
+    public void makeVisible(){
+        isVisible = true;
+        draw();
     }
-    // se crea la ubicacion de la ruta, pero como ubicarla (x) y (y)
-    // si es diagonal ...
-    // calcular lo largo o ancho de suta para asi dibujarla ...
+    
+    /**
+     * Hace invisible el camino, si ya esta visible no hace nada. 
+     */
+    public void makeInvisible(){
+        erase();
+        isVisible = false;
+    }
+    
+    
+    /**
+     * Dibuja el rectangulo en la pantalla del canva.
+     */
 
+    private void draw() {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.draw(this, color, new Polygon(xpoints, ypoints, 4));
+            canvas.wait(10);
+        }
+    }
 
-    public void createRoute(String locationA,String locationB)
-    {
-        
+    /**
+     * Borra el rectangulo de la pantalla.
+     */
+    private void erase(){
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.erase(this);
+        }
     }
 }
+

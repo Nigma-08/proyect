@@ -19,34 +19,19 @@ public class Circle{
     private boolean isVisible;
     
 
-    public Circle(){
-        diameter = 30;
-        xPosition =20;
-        yPosition = 15;
-        color = "blue";
+    public Circle(int xPosition, int yPosition, String color){
+        diameter = 50;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        this.color = color;
         isVisible = false;
     }
-    public String getColor (){
-        return color;
-    }
-    public int getXposition (){
-        return xPosition;
-    }
-    public int getYposition (){
-        return yPosition;
-    }
-    public void setY (int y){
-        this.yPosition = y;
-    }
-    public void setX (int x){
-        this.xPosition = x; 
-    }
+    
     public void makeVisible(){
         isVisible = true;
         draw();
     }
     
-
     public void makeInvisible(){
         erase();
         isVisible = false;
@@ -68,7 +53,10 @@ public class Circle{
             canvas.erase(this);
         }
     }
-    
+    public void drawLine(){
+        Canvas canvas = Canvas.getCanvas();
+        canvas.draw(this, color, new java.awt.geom.Line2D.Double(0, 0, 50, 50));
+    }
     /**
      * Move the circle a few pixels to the right.
      */
@@ -104,6 +92,17 @@ public class Circle{
     public void moveHorizontal(int distance){
         erase();
         xPosition += distance;
+        draw();
+    }
+    
+    /**
+     * Move the circle horizontally.
+     * @param distance the desired distance in pixels
+     */
+    public void changePosition(int newx, int newy){
+        erase();
+        xPosition = newx;
+        yPosition = newy;
         draw();
     }
 
@@ -176,7 +175,24 @@ public class Circle{
         color = newColor;
         draw();
     }
-
-
+    
+    //GET Y SET
+    public int getDiameter(){
+        return this.diameter;
+    }
+    
+    public int getXposition (){
+        return xPosition;
+    }
+    
+    public int getYposition (){
+        return yPosition;
+    }
+    public void setY (int y){
+        this.yPosition = y;
+    }
+    public void setX (int x){
+        this.xPosition = x; 
+    }
 
 }

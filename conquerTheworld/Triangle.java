@@ -1,4 +1,4 @@
-    import java.awt.*;
+import java.awt.*;
 
 /**
  * A triangle that can be manipulated and that draws itself on a canvas.
@@ -21,11 +21,11 @@ public class Triangle{
     /**
      * Create a new triangle at default position with default color.
      */
-    public Triangle(){
-        height = 30;
-        width = 40;
-        xPosition = 140;
-        yPosition = 15;
+    public Triangle(int xPosition, int yPosition){
+        height = 25;
+        width = 25;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
         color = "green";
         isVisible = false;
     }

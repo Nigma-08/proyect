@@ -1,10 +1,19 @@
 #BlueJ class context
 comment0.target=Route
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Ruta\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=Route()
-comment2.params=locationA
-comment2.target=java.lang.String\ getLocationA(java.lang.String)
-comment3.params=locationA\ locationB
-comment3.target=void\ createRoute(java.lang.String,\ java.lang.String)
-numComments=4
+comment0.text=\r\n\ Route\ es\ una\ clase\ que\ manipula\ las\ rutas\ entre\ naciones\r\n\ \r\n\ @author\ (Torres\ Julian-Romero\ Nicolas)\ \r\n\ @version\ (2021-02)\r\n
+comment1.params=xpoints\ ypoints
+comment1.target=Route(int[],\ int[])
+comment1.text=\r\n\ Creador\ del\ camino.\r\n\ @param\ xpoints\ puntos\ en\ x\ para\ las\ coordenadas.\r\n\ @param\ ypoints\ puntos\ en\ y\ para\ las\ coordenadas,\r\n
+comment2.params=
+comment2.target=void\ makeVisible()
+comment2.text=\r\n\ Hace\ visible\ el\ camino\ \r\n
+comment3.params=
+comment3.target=void\ makeInvisible()
+comment3.text=\r\n\ Hace\ invisible\ el\ camino,\ si\ ya\ esta\ visible\ no\ hace\ nada.\ \r\n
+comment4.params=
+comment4.target=void\ draw()
+comment4.text=\r\n\ Dibuja\ el\ rectangulo\ en\ la\ pantalla\ del\ canva.\r\n
+comment5.params=
+comment5.target=void\ erase()
+comment5.text=\r\n\ Borra\ el\ rectangulo\ de\ la\ pantalla.\r\n
+numComments=6
