@@ -11,10 +11,9 @@ public class Nation
 {
     // instance variables - replace the example below with your own
     private String name;
-    private int x;
-    private int y;
     private Circle nation;
     private ArrayList<Army> armies_list;
+    private ArrayList<Route> routes;
     private int armies;
     /**
      * Crea la nacion e instancia todos sus componentes
@@ -25,32 +24,69 @@ public class Nation
      */
     public Nation(String color, int x, int y, int armies)
     {
-        nation = new Circle(x, y, color);
-        this.x = x;
-        this.y = y;
+        nation = new Circle();
+        nation.changePosition(x,y);
+        nation.changeColor(color);
         this.name = color;
         this.armies = armies;
-        armies_list = new ArrayList<Army>();
-        nation.makeVisible();
+    }
+    
+    
+    
+    /**
+     * Añade una ruta a la nacion
+     */
+    public void addRoute(Nation a,Nation b,int cost){
+        if(routes == null){
+            routes = new ArrayList<Route>();
+        }
+        routes.add(new Route(a,b,cost));
     }
     
     /**
-     * mueve la nacion a la nueva posicion.
-     * 
-     * @param newx nuevapos en x.
-     * @param newy nuevapos en y.
+     * Retira una ruta
      */
-    public void changePosition(int newx, int newy){
-        this.x = newx;
-        this.y = newy;
+    public void removeRoute(String locationB){
+        if(routes !=null){
+            for(int i = 0; i<routes.size();i++ ){
+                if(routes.get(i).getDestination().getName() == locationB){
+                    routes.get(i).makeInvisible();
+                    this.routes.remove(i);
+                }
+            }
+        }
     }
+    
+    
     
     /**
      * Añade una armada a la nacion
      * @param a armada que se añade.
      */
     public void addArmy(Army a){
+        if(armies_list==null){
+            armies_list = new ArrayList<Army>();
+        }
         armies_list.add(a);
+    }
+    
+    /**
+     * Retira los ejercitos del mundo 
+     */
+    public void removeArmy(){
+        if(armies_list.size() > 0 ){
+            Army arm = armies_list.get(armies_list.size() - 1);
+            armies_list.remove(arm);
+        }
+    }
+    
+    
+    
+    /**
+     * Hace visible la nacion
+     */
+    public void makeVisible(){
+        nation.makeVisible();
     }
     
     /**
@@ -61,16 +97,90 @@ public class Nation
     }
     
     /**
-     * Retira los ejercitos del mundo 
-     * 
+     * Hace invisible las rutas de la Nacion y a ella misma
      */
-    public void removeArmy(){
-        Army arm = armies_list.get(armies_list.size() - 1);
-        armies_list.remove(arm);
-        arm.makeInvisible();
+    public void remove(){
+        makeInvisibleRoutes();
+        makeInvisible();
     }
     
+    
+    
+    /**
+     * Hace visible sus rutas
+     */
+    public void makeVisibleRoutes(){
+        if(routes != null){
+            for(Route r:routes){
+                r.makeVisible();
+            }
+        }
+    }
+    
+    /**
+     * Hace invisible sus rutas
+     */
+    public void makeInvisibleRoutes(){
+        if(routes != null){
+            for(Route r:routes){
+                r.makeInvisible();
+            }
+        }
+    }
+    
+    
+    
+    /**
+     * Hace visible sus armadas de la nacion
+     */
+    public void makeVisibleArmies(){
+        if(armies_list != null){
+            for(Army Ar:armies_list){
+                Ar.makeVisible();
+            }
+        }
+    }
+    
+    /**
+     * Hace invisible sus armadas de la nacion
+     */
+    public void makeInvisibleArmies(){
+        if(armies_list != null){
+            for(Army Ar:armies_list){
+                Ar.makeInvisible();
+            }
+        }
+    }
+    
+    
+    //CHANGEs
+    /**
+     * mueve la nacion a la nueva posicion.
+     * 
+     * @param newx nuevapos en x.
+     * @param newy nuevapos en y.
+     */
+    public void changePosition(int newx, int newy){
+        nation.changePosition(newx,newy);
+    }
+    
+    /**
+     * Agrega el color al circulo de la nacion
+     * @param color color de la nacion
+     */
+    public void changeColor(String color){
+        nation.changeColor(color);
+    }
+    
+    
     //GETS AND SETS
+    /**
+     * Devuelve las rutas de la nacion
+     */
+    public ArrayList<Route> getRoutes(){
+        return routes;
+    }
+    
     public int getDiameter(){
         return this.nation.getDiameter();
     }
@@ -84,6 +194,10 @@ public class Nation
     }
     
     public String getName(){
-        return this.name;
+        return name;
+    }
+    
+    public Nation getNation(){
+        return this;
     }
 }

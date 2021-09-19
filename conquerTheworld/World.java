@@ -14,7 +14,7 @@ public class World
     private int width;
     private Rectangle fondo;
     private ArrayList<Nation> nations;
-    private ArrayList<Object[]> routes;
+    
 
     /**
      * Crea el mundo en el cual van a estar las naciones caminos y ejercitos.
@@ -28,9 +28,7 @@ public class World
         this.width = width;
         fondo = new Rectangle();
         fondo.changeSize(length,width);
-        fondo.changeColor("white");
-        nations = new ArrayList<Nation>();
-        routes = new ArrayList<Object[]>();
+        fondo.changeColor("black");
     }
 
 
@@ -41,9 +39,35 @@ public class World
      * @return     the sum of x and y 
      */
     public void addNation(String color,int x ,int y , int armies ){
-        Nation nation = new Nation(color, x, y, armies);
-        nations.add(nation);
+        if(nations == null ){
+            nations = new ArrayList<Nation>();
+        }
+        this.nations.add(new Nation(color,x,y,armies));
     }
+    
+    /**
+     * Elimina una nacion si exite
+     * @param color Nacion en donde se pondran los ejercitos.
+     */
+    public void delNation(String color){
+        int indexNation = -1;
+        for (Nation n: nations){
+            if (n.getName() == color ){
+                n.remove();
+                ArrayList<Route> rutasNacion = n.getRoutes();
+                for(Route r:rutasNacion){
+                    r.getDestination().removeRoute(n.getName());
+                }
+                indexNation = nations.indexOf(n);
+            }
+        }
+        
+        if(indexNation != -1){
+            nations.remove(indexNation);
+        }
+    }
+
+    
     
     /**
      * Añade rutas desde una nacion a otra. Esta se representa visualmente.
@@ -53,122 +77,18 @@ public class World
      * @param locationB nacion de llegada.
      */
     public void addRoute(String locationA , String locationB, int cost){
-        int[] found = foundNations(locationA ,locationB);
-        if(found[0] != 0 && found[1] != 0){
-            Object[] puente = new Object[3];
-            Nation a = this.nations.get(found[0]-1);
-            Nation b = this.nations.get(found[1]-1);
-            int Cx1 = a.getPositionX() + a.getDiameter()/2 ;int Cy1 = a.getPositionY() + a.getDiameter()/2;// Punto centro de a
-            int Cx2 = b.getPositionX() + b.getDiameter()/2;int Cy2 = b.getPositionY() + b.getDiameter()/2; // Punto centro de b
-            int[] posx = new int[4];
-            int[] posy = new int[4];
-            if(a.getPositionX() == b.getPositionX()){
-                //puntos primer circulo (a)
-                posx[0] = Cx1 - a.getDiameter()/4 ; posx[1]= Cx1 + a.getDiameter()/4 ;
-                posy[0] = Cy1;posy[1]=Cy1;
-                //puntos segundo circulo (b)
-                posx[2] = Cx2 + b.getDiameter()/4 ; posx[3]= Cx2 - b.getDiameter()/4 ;
-                posy[2] = Cy2;posy[3]=Cy2;
-                Route route = new Route(posx,posy);
-                puente[0] = locationA;
-                puente[1] = locationB;
-                puente[2] = route;
-                routes.add(puente);
-            }else if(a.getPositionY() == b.getPositionY()){
-                //puntos primer circulo (a)
-                posx[0] = Cx1 ; posx[1]= Cx1 ;
-                posy[0] = Cy1 - a.getDiameter()/4;posy[1]=Cy1 + a.getDiameter()/4;
-                //puntos segundo circulo (b)
-                posx[2] = Cx2 ; posx[3]= Cx2 ;
-                posy[2] = Cy2 + b.getDiameter()/4;posy[3]=Cy2 - b.getDiameter()/4 ;
-                Route route = new Route(posx,posy);
-                puente[0] = locationA;
-                puente[1] = locationB;
-                puente[2] = route;
-                routes.add(puente);
-            }else if((a.getPositionY() < b.getPositionY() && a.getPositionX() < b.getPositionX())||(a.getPositionY() > b.getPositionY() && a.getPositionX() > b.getPositionX())){
-                //puntos primer circulo (a)
-                int r = a.getDiameter()/2;
-                posx[0] = Cx1 - (r/(int)Math.sqrt(2))/2;posx[1]=Cx1 + (r/(int)Math.sqrt(2))/2;
-                posy[0] = Cy1 + (r/(int)Math.sqrt(2))/2;posy[1]=Cy1 - (r/(int)Math.sqrt(2))/2;
-                //puntos segundo circulo (b)
-                posx[2] = Cx2 + (r/(int)Math.sqrt(2))/2;posx[3]= Cx2 - (r/(int)Math.sqrt(2))/2;
-                posy[2] = Cy2 - (r/(int)Math.sqrt(2))/2;posy[3]=Cy2 + (r/(int)Math.sqrt(2))/2 ;
-                Route route = new Route(posx,posy);
-                puente[0] = locationA;
-                puente[1] = locationB;
-                puente[2] = route;
-                routes.add(puente);    
-            }else if((a.getPositionY() < b.getPositionY() && a.getPositionX() > b.getPositionX())||(a.getPositionY() > b.getPositionY() && a.getPositionX() < b.getPositionX())){
-                //puntos primer circulo (a)
-                int r = a.getDiameter()/2;
-                posx[0] = Cx1 - (r/(int)Math.sqrt(2))/2;posx[1]=Cx1 + (r/(int)Math.sqrt(2))/2;
-                posy[0] = Cy1 - (r/(int)Math.sqrt(2))/2;posy[1]=Cy1 + (r/(int)Math.sqrt(2))/2;
-                //puntos segundo circulo (b)
-                posx[2] = Cx2 + (r/(int)Math.sqrt(2))/2;posx[3]= Cx2 - (r/(int)Math.sqrt(2))/2;
-                posy[2] = Cy2 + (r/(int)Math.sqrt(2))/2;posy[3]=Cy2 - (r/(int)Math.sqrt(2))/2 ;
-                Route route = new Route(posx,posy);
-                puente[0] = locationA;
-                puente[1] = locationB;
-                puente[2] = route;
-                routes.add(puente);
-            }
-        }else{
-            //Msm de que no se encuentran las 2 naciones 
-        }
-    }
-    
-    /**
-     * Mira si las naciones estan creadas y retorn un vector con sus posicones empezando
-     * desde 1 si no retorna esa pos en 0-
-     * @param locationA Nacion de origen.
-     * @param locationB nacion de llegada.
-     */
-    private int[] foundNations(String locationA , String locationB){
-        boolean found = false,foundT = false;
-        int[] pos = new int[2];
-        for(Nation n : nations){
-            if(!found){
-                if(n.getName().equals(locationA)){
-                    found = true;
-                    //System.out.println(locationA+" "+locationB);
-                    pos[0] =(nations.indexOf(n)+1);
-                }
+        ArrayList<Nation> nationSearch = foundNations(locationA ,locationB);
+        if(nationSearch.size()!= 0){
+            if(nationSearch.get(0).getName() == locationA){
+                Nation a = nations.get(nations.indexOf(nationSearch.get(0)));
+                Nation b = nations.get(nations.indexOf(nationSearch.get(1)));
+                a.addRoute(a,b,cost);
+                b.addRoute(b,a,cost);
             }else{
-                if(n.getName().equals(locationB)){
-                    foundT = true;
-                    //System.out.println(locationA+" "+locationB);
-                    pos[1] =(nations.indexOf(n)+1);
-                }
-            }
-        }
-        return pos;
-    }
-    
-     /**
-     * Añade ejercitos a la nacion seleccionada, se reprensta visualemte
-     * por un triangulo.
-     * @param  location Nacion en donde se pondran los ejercitos.
-     */
-    public void putArmy(String location){
-        for (Nation n: nations){
-            if (n.getName().equals(location)){
-                Army arm = new Army(n.getPositionX() + 25, n.getPositionY() + 12);
-                n.addArmy(arm);
-                arm.makeVisible();
-            }
-        }
-    }
-    
-    /**
-     * Elimina una nacion si exite
-     * @param color Nacion en donde se pondran los ejercitos.
-     */
-    public void delNation(String color){
-        for (Nation n: nations  ){
-            if (n.getName().equals(color)){
-                nations.remove(n);
-                n.makeInvisible();
+                Nation a = nations.get(nations.indexOf(nationSearch.get(1)));
+                Nation b = nations.get(nations.indexOf(nationSearch.get(0)));
+                a.addRoute(a,b,cost);
+                b.addRoute(b,a,cost);
             }
         }
     }
@@ -179,12 +99,35 @@ public class World
      * @param locationB nacion de llegada.
      */
     public void delStreet(String locationA, String locationB){
-        for (Object[] r: routes){
-            if (r[0] == locationA && r[1] == locationB || 
-            r[0] == locationB && r[1] == locationA){
-                Route ruta = (Route)r[2];
-                ruta.makeInvisible();
-            }    
+        ArrayList<Nation> nationSearch = foundNations(locationA ,locationB);
+        if(nationSearch.size()!= 0){
+            if(nationSearch.get(0).getName() == locationA){
+                Nation a = nations.get(nations.indexOf(nationSearch.get(0)));
+                Nation b = nations.get(nations.indexOf(nationSearch.get(1)));
+                a.removeRoute(locationB);
+                b.removeRoute(locationA);
+            }else{
+                Nation a = nations.get(nations.indexOf(nationSearch.get(1)));
+                Nation b = nations.get(nations.indexOf(nationSearch.get(0)));
+                a.removeRoute(locationB);
+                b.removeRoute(locationA);
+            }
+        }
+    }
+    
+    
+    
+    /**
+     * Añade ejercitos a la nacion seleccionada, se reprensta visualemte
+     * por un triangulo.
+     * @param  location Nacion en donde se pondran los ejercitos.
+     */
+    public void putArmy(String location){
+        for (Nation n: nations){
+            if (n.getName()==location){
+                Army arm = new Army(n.getPositionX() + 25, n.getPositionY() + 12);
+                n.addArmy(arm);
+            }
         }
     }
     
@@ -207,33 +150,95 @@ public class World
      * @param locationB nacion de llegada.
      */
     public void moveArmyOneRoute(String locationA, String locationB){
-        for (Object[] r: routes){
-            if (((String)r[0]).equals(locationA) && ((String)r[1]).equals(locationB) || 
-            ((String)r[0]).equals(locationB) && ((String)r[1]).equals(locationA)){
-                putArmy(locationB);
-                removeArmy(locationA);
+        ArrayList<Nation> nationSearch = foundNations(locationA ,locationB);
+        if(nationSearch.size()!= 0){
+            if(nationSearch.get(0).getName() == locationA){
+                Nation a = nations.get(nations.indexOf(nationSearch.get(0)));
+                Nation b = nations.get(nations.indexOf(nationSearch.get(1)));
+                for(Route r: a.getRoutes()){
+                    if(r.getDestination().equals(b)){
+                        a.removeArmy();
+                        putArmy(b.getName());
+                    }
+                }
+            }else{
+                Nation a = nations.get(nations.indexOf(nationSearch.get(1)));
+                Nation b = nations.get(nations.indexOf(nationSearch.get(0)));
+                for(Route r: a.getRoutes()){
+                    if(r.getDestination().equals(b)){
+                        a.removeArmy();
+                        putArmy(b.getName());
+                    }
+                }
             }
         }
     }
     
-     /**
+    
+    
+    /**
      * hace invisible el tablero
      */
     public void makeVisible(){
         fondo.makeVisible();
+        if(nations != null){
+            for(Nation n:nations){
+                n.makeVisibleRoutes();
+            }
+            
+            for(Nation n:nations){
+                n.makeVisible();
+            }
+            
+            for(Nation n:nations){
+                n.makeVisibleArmies();
+            }
+        }
     }
     
-     /**
+    /**
      * Hace visible el mundo
      */
     public void makeInvisible(){
         fondo.makeInvisible();
+        for(Nation n:nations){
+            n.makeInvisible();
+            n.makeInvisibleRoutes();
+            n.makeVisibleArmies();
+        }
     }
+    
+    
     
     /**
      * Sale del programa
      */
     public void exit(){
         System.exit(0);
+    }
+    
+    
+    
+    /**
+     * Mira si las naciones estan creadas y retorna un array con las naciones.
+     * @param locationA Nacion de origen.
+     * @param locationB nacion de llegada.
+     */
+    private ArrayList<Nation> foundNations(String locationA , String locationB){
+        ArrayList<Nation> nationsFound = new ArrayList<Nation>();
+        for(Nation n: nations){
+            System.out.println(n.getName());
+            if(n.getName().equals(locationA)){
+                //System.out.println(locationA);
+                nationsFound.add(n);
+            }else if(n.getName().equals(locationB)){
+                //System.out.println(locationA);
+                nationsFound.add(n);
+            }
+        }
+        if(nationsFound.size() > 1){
+            return nationsFound;
+        }
+        return nationsFound;
     }
 }
