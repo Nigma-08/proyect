@@ -13,8 +13,8 @@ public class Nation
     private String name;
     private Circle nation;
     private ArrayList<Army> armies_list;
-    private ArrayList<Route> routes;
     private int armies;
+    private ArrayList<Route> routes;
     /**
      * Crea la nacion e instancia todos sus componentes
      * @param color nombre de la nacion y su color.
@@ -29,6 +29,10 @@ public class Nation
         nation.changeColor(color);
         this.name = color;
         this.armies = armies;
+        if(armies_list == null){
+            armies_list = new ArrayList<Army>();
+        }
+        
     }
     
     
@@ -71,7 +75,7 @@ public class Nation
     }
     
     /**
-     * Retira los ejercitos del mundo 
+     * Retira los ejercitos de la nacion
      */
     public void removeArmy(){
         if(armies_list.size() > 0 ){
@@ -80,7 +84,16 @@ public class Nation
         }
     }
     
-    
+    /**
+     * Retorna si la nacion esta conquistada.
+     */
+    public boolean conquer(){
+        boolean flag = false;
+        if(armies_list.size() == armies){
+            flag = true;
+        }
+        return flag;
+    }
     
     /**
      * Hace visible la nacion
@@ -200,4 +213,9 @@ public class Nation
     public Nation getNation(){
         return this;
     }
+    
+    public ArrayList<Army> getArmys(){
+        return this.armies_list;
+    }
+    
 }

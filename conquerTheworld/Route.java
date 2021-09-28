@@ -159,9 +159,11 @@ public class Route{
         return destination;
     }
  
-    public double getDistance() {
+    public double getValue() {
         return value;
     }
+    
+    
     
     /*
     public void setOrigin(Nation origin) {
@@ -174,5 +176,7 @@ public class Route{
         this.destination = destination;
     }
     */
+   
+   
 }
 
