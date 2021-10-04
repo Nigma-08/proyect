@@ -19,7 +19,11 @@ public class Army
     {
         army = new Triangle(xPosition, yPosition);
     }
-
+    
+    public void changeColor(String color){
+        army.changeColor(color);
+    }
+    
     public void makeVisible()
     {
         army.makeVisible();

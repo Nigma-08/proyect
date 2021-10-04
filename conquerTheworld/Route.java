@@ -11,7 +11,7 @@ public class Route{
     private boolean isVisible;
     private Nation origin;
     private Nation destination;
-    private int value;
+    private Integer value;
     private int[] xpoints ;
     private int[] ypoints;
     
@@ -159,7 +159,7 @@ public class Route{
         return destination;
     }
  
-    public double getValue() {
+    public Integer getValue() {
         return value;
     }
     

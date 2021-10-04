@@ -9,7 +9,7 @@ import java.util.Arrays;
  * @author  (your name)
  * @version (a version number or a date)
  */
-public class PruebaWorld
+public class WorldTestC2
 {
     private World w;
     /**
@@ -38,7 +38,7 @@ public class PruebaWorld
     @Test
     public void NoDeberiaCrearNacion(){
         w.addNation("red",400,50,0);
-        assertTrue(w.ok());
+        assertFalse(w.ok());
     }
     
     /**
@@ -56,7 +56,7 @@ public class PruebaWorld
     @Test
     public void NoDeberiaBorrarNacion(){
         w.delNation("blue");
-        assertTrue(w.ok());
+        assertFalse(w.ok());
     }
     
     /**
@@ -75,13 +75,13 @@ public class PruebaWorld
     @Test
     public void NoDeberiaCrearRuta(){
         w.addRoute("red","red",10);
-        assertTrue(w.ok());
+        assertFalse(w.ok());
         w.addRoute("red","blue",10);
-        assertTrue(w.ok());
+        assertFalse(w.ok());
         w.addNation("yellow",50,50,0);
         w.addRoute("red","yellow",5);
         w.addRoute("yellow","red",0);
-        assertTrue(w.ok());
+        assertFalse(w.ok());
     }
     
     /**
@@ -104,10 +104,10 @@ public class PruebaWorld
     @Test
     public void NoDeberiaEliminarRuta(){
         w.delStreet("blue","red");
-        assertTrue(w.ok());
+        assertFalse(w.ok());
         w.addNation("yellow",50,50,0);
         w.delStreet("yellow","red");
-        assertTrue(w.ok());
+        assertFalse(w.ok());
     }
     
     /**
@@ -128,11 +128,11 @@ public class PruebaWorld
     @Test
     public void NoDeberiaAñadirEjercito(){
         w.putArmy("blue");
-        assertTrue(w.ok());
+        assertFalse(w.ok());
         w.putArmy("green");
-        assertTrue(w.ok());
+        assertFalse(w.ok());
         w.putArmy("orange");
-        assertTrue(w.ok());
+        assertFalse(w.ok());
     }
     
     /**
@@ -155,9 +155,9 @@ public class PruebaWorld
     @Test
     public void NoDeberiaEliminarEjercito(){
         w.removeArmy("blue");
-        assertTrue(w.ok());
+        assertFalse(w.ok());
         w.removeArmy("red");
-        assertTrue(w.ok());
+        assertFalse(w.ok());
     }
     
     
@@ -169,7 +169,7 @@ public class PruebaWorld
         w.addNation("green",50,50,4);
         w.addRoute("red","green",0);
         for(int i =0; i < 3;i++){
-            w.putArmy("green");
+            w.putArmy("green"); 
             w.moveArmyOneRoute("green","red");
         }
         assertTrue(w.ok());
@@ -183,7 +183,7 @@ public class PruebaWorld
         for(int i =0; i < 3;i++){
             w.moveArmyOneRoute("green","blue");
         }
-        assertTrue(w.ok());
+        assertFalse(w.ok());
     }
     
     /**
@@ -212,12 +212,12 @@ public class PruebaWorld
         for(int i = 0; i < 3;i++){
             w.putArmy("green");
         }
-        assertTrue(w.conqueredNations()[0]=="green");
+        assertFalse(w.conqueredNations()[0]=="green");
         w.addNation("yellow",150,50,15);
         for(int i =0; i < 14;i++){
             w.putArmy("yellow");
         }
-        assertTrue(w.conqueredNations()[1]=="yellow");
+        assertFalse(w.conqueredNations()[1]=="yellow");
     }
     
     /**
@@ -256,7 +256,22 @@ public class PruebaWorld
         for(int i =0; i < 2;i++){
             w.putArmy("red");
         }
-        assertTrue(w.conquer() == (true));
+        assertFalse(w.conquer() == (true));
+    }
+    
+    /**
+     * Probar metodo mover ejecito a menor costo
+     */
+    @Test
+    public void deberiaMoverEjercitoMenorCosto(){
+        w.addNation("blue", 300, 300, 1);
+        w.addNation("green", 150, 300, 1);
+        w.addRoute("green", "red", 10);
+        w.addRoute("red", "blue", 5);
+        w.addRoute("blue", "green", 3);
+        w.putArmy("red");
+        w.moveArmy("red", "blue");
+        assertTrue(w.payment() == 5);
     }
     
     /**

@@ -109,15 +109,17 @@ public class Canvas{
         redraw();
     }
 
-    /**
+        /**
      * Set the foreground colour of the Canvas.
-     * @param  newColour   the new colour for the foreground of the Canvas 
+     * @param  newColour   the new colour for the foreground of the Canvas
      */
     public void setForegroundColor(String colorString){
         if(colorString.equals("red"))
             graphic.setColor(Color.red);
         else if(colorString.equals("black"))
             graphic.setColor(Color.black);
+        else if(colorString.equals("gray"))
+            graphic.setColor(Color.gray);   
         else if(colorString.equals("blue"))
             graphic.setColor(Color.blue);
         else if(colorString.equals("yellow"))
@@ -128,8 +130,14 @@ public class Canvas{
             graphic.setColor(Color.magenta);
         else if(colorString.equals("white"))
             graphic.setColor(Color.white);
-        else if(colorString.equals("gray"))
-            graphic.setColor(Color.gray);
+        else if(colorString.equals("orange"))
+            graphic.setColor(Color.orange);
+        else if(colorString.equals("cyan"))
+            graphic.setColor(Color.cyan);
+        else if(colorString.equals("pink"))
+            graphic.setColor(Color.pink);
+        else if(colorString.equals("light gray"))
+            graphic.setColor(Color.lightGray);
         else
             graphic.setColor(Color.black);
     }

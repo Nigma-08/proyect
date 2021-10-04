@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.*;
 
 /**
  * La clase Nacion son las naciones que se muestran el mundo 
@@ -15,6 +16,12 @@ public class Nation
     private ArrayList<Army> armies_list;
     private int armies;
     private ArrayList<Route> routes;
+    private Integer distance = Integer.MAX_VALUE;
+    //-------------------Dijkstra-----------------------------
+    private List<Nation> shortestPath = new LinkedList<>();
+    //-------------------DFS-----------------------------
+    //private Set<ArrayList<Nation>> allRutes ;
+    //private boolean isVisited = false;
     /**
      * Crea la nacion e instancia todos sus componentes
      * @param color nombre de la nacion y su color.
@@ -29,13 +36,9 @@ public class Nation
         nation.changeColor(color);
         this.name = color;
         this.armies = armies;
-        if(armies_list == null){
-            armies_list = new ArrayList<Army>();
-        }
-        
+        armies_list = new ArrayList<Army>();
     }
-    
-    
+
     
     /**
      * Añade una ruta a la nacion
@@ -80,6 +83,7 @@ public class Nation
     public void removeArmy(){
         if(armies_list.size() > 0 ){
             Army arm = armies_list.get(armies_list.size() - 1);
+            arm.makeInvisible();
             armies_list.remove(arm);
         }
     }
@@ -167,6 +171,14 @@ public class Nation
     
     
     //CHANGEs
+    public void setShortestPath(List<Nation> shortestPath){
+        this.shortestPath = shortestPath;
+    }
+
+    public List<Nation> getShortestPath(){
+        return shortestPath;
+    }
+    
     /**
      * mueve la nacion a la nueva posicion.
      * 
@@ -187,6 +199,17 @@ public class Nation
     
     
     //GETS AND SETS
+    /**
+     * Asigna un valor a la distancia
+     */
+    public void setDistance(int n){
+        distance = n;
+    }
+    
+    public Integer getDistance(){
+        return distance;
+    }
+    
     /**
      * Devuelve las rutas de la nacion
      */

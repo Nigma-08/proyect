@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.target=PruebaWorld
+comment0.target=WorldTestC2
 comment0.text=\r\n\ The\ test\ class\ PruebaWorld.\r\n\r\n\ @author\ \ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=void\ setUp()
@@ -38,8 +38,11 @@ comment2.params=
 comment2.target=void\ DeberiaCrearNacion()
 comment2.text=\r\n\ Prueba\ del\ metodo\ de\ a\u00F1adir\ naciones\r\n
 comment20.params=
-comment20.target=void\ tearDown()
-comment20.text=\r\n\ Tears\ down\ the\ test\ fixture.\r\n\r\n\ Called\ after\ every\ test\ case\ method.\r\n
+comment20.target=void\ deberiaMoverEjercitoMenorCosto()
+comment20.text=\r\n\ Probar\ metodo\ mover\ ejecito\ a\ menor\ costo\r\n
+comment21.params=
+comment21.target=void\ tearDown()
+comment21.text=\r\n\ Tears\ down\ the\ test\ fixture.\r\n\r\n\ Called\ after\ every\ test\ case\ method.\r\n
 comment3.params=
 comment3.target=void\ NoDeberiaCrearNacion()
 comment3.text=\r\n\ Prueba\ del\ metodo\ de\ a\u00F1adir\ naciones\r\n
@@ -61,4 +64,4 @@ comment8.text=\r\n\ Prueba\ del\ metodo\ de\ eliminar\ rutas\r\n
 comment9.params=
 comment9.target=void\ NoDeberiaEliminarRuta()
 comment9.text=\r\n\ Prueba\ del\ metodo\ de\ eliminar\ rutas\r\n
-numComments=21
+numComments=22
