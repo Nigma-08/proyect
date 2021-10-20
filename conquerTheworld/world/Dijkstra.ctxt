@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Dijkstra
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Dijkstra\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=graph\ source\ destination
+comment1.target=Nation\ calculateShortestPathFromSource(Graph,\ Nation,\ Nation)
+comment1.text=\r\n\ Calcula\ el\ camino\ con\ menor\ costo\r\n\ @param\ graph\ el\ mundo\ \r\n\ @param\ source\ origen\ de\ la\ busqueda\r\n\ @param\ destination\ destino\ de\ la\ busqueda\r\n
+comment2.params=unsettledNodes
+comment2.target=Nation\ getLowestDistanceNode(java.util.Set)
+comment2.text=\r\n\ Obtiene\ la\ nacion\ con\ la\ cual\ tiene\ el\ camino\ de\ menor\ costo\r\n\ @param\ unsettledNodes\ Naciones\ aun\ no\ visitadas.\r\n
+comment3.params=evaluationNode\ edgeWeigh\ sourceNode
+comment3.target=void\ calculateMinimumDistance(Nation,\ java.lang.Integer,\ Nation)
+comment3.text=\r\n\ Calcula\ la\ distancia\ minima\ de\ la\ nacion\ de\ origen\ a\ la\ de\ destino\r\n\ @param\ evaluationNode\ destino\ nation\r\n\ @param\ sourceNode\ origen\ nation\r\n\ @param\ edgeWeigh\ peso\ del\ camino\r\n
+numComments=4

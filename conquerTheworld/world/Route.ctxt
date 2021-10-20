@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Route
+comment0.text=\r\n\ Route\ es\ una\ clase\ que\ manipula\ las\ rutas\ entre\ naciones(Edge)\ \r\n\ @author\ (Torres\ Julian-Romero\ Nicolas)\ \r\n\ @version\ (2021-02)\r\n
+comment1.params=a\ b\ value
+comment1.target=Route(Nation,\ Nation,\ int)
+comment1.text=\r\n\ Creador\ del\ camino.\r\n\ @param\ xpoints\ puntos\ en\ x\ para\ las\ coordenadas.\r\n\ @param\ ypoints\ puntos\ en\ y\ para\ las\ coordenadas,\r\n
+comment2.params=
+comment2.target=Nation\ getOrigin()
+comment3.params=
+comment3.target=Nation\ getDestination()
+comment4.params=
+comment4.target=java.lang.Integer\ getValue()
+numComments=5
